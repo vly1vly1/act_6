@@ -72,3 +72,27 @@ jspm_packages/
 *.swp
 *.swo
 *~
+
+# Angular specific
+/.angular/
+.angular/
+dist/
+tmp/
+out-tsc/
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+
+# Package locks (keep package.json but ignore lock files for cleaner repo)
+# Note: Uncomment the next line if you want to ignore package-lock.json
+# package-lock.json
+
+# Build outputs
+*.tgz
+*.tar.gz
+
+# Temporary files
+.tmp/
+.temp/
