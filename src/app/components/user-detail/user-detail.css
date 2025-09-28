@@ -1,0 +1,200 @@
+/* Wireframe-style User Detail Card */
+.user-detail-card {
+  border-radius: 15px;
+  border: 1px solid #dee2e6;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Large User Photo - Wireframe Style */
+.user-photo-large-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.user-photo-large {
+  width: 250px;
+  height: 250px;
+  border: 5px solid #007bff;
+  background: #f8f9fa;
+  padding: 10px;
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* User Information Section - Wireframe Style */
+.user-info-section {
+  padding: 1rem 0;
+}
+
+.info-row {
+  .info-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .info-value {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 0;
+    padding-left: 0.25rem;
+    font-weight: 400;
+  }
+}
+
+/* Action Buttons - Bootstrap Best Practices */
+.action-buttons-detail {
+  margin-top: 2rem;
+  justify-content: flex-start;
+}
+
+.action-buttons-detail .btn {
+  min-width: 120px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.15s ease-in-out;
+  border-width: 1px;
+}
+
+.action-buttons-detail .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.action-buttons-detail .btn:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.action-buttons-detail .btn:active {
+  transform: translateY(0);
+}
+
+/* Delete Modal - Wireframe Style */
+.modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.modal-body {
+  padding: 1.5rem;
+
+  p {
+    color: #495057;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+}
+
+/* Loading and Error States */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.alert {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-photo-large {
+    width: 200px;
+    height: 200px;
+  }
+
+  .user-info-section {
+    padding-top: 2rem;
+  }
+
+  .info-row {
+    margin-bottom: 1.5rem !important;
+
+    .info-label {
+      font-size: 1.1rem;
+    }
+
+    .info-value {
+      font-size: 1rem;
+    }
+  }
+
+  .btn-action {
+    min-width: 120px;
+    font-size: 0.9rem;
+    padding: 0.625rem 1.25rem;
+  }
+
+  .card-body {
+    padding: 3rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-photo-large {
+    width: 160px;
+    height: 160px;
+  }
+
+  .card-body {
+    padding: 2rem !important;
+  }
+
+  .action-buttons-detail {
+    flex-direction: column;
+    align-items: stretch;
+
+    .btn {
+      width: 100%;
+      margin-bottom: 0.75rem;
+      min-width: auto;
+    }
+  }
+
+  .user-info-section {
+    .info-row {
+      margin-bottom: 1.25rem !important;
+    }
+  }
+
+  .modal-body {
+    .btn {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .d-flex {
+      flex-direction: column;
+    }
+  }
+}

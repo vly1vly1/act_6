@@ -1,1 +1,125 @@
-<p>home works!</p>
+<div class="container py-4">
+  @if (loading()) {
+    <div class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+  } @else if (error()) {
+    <div class="alert alert-danger text-center">
+      <h4>Error al cargar usuarios</h4>
+      <p>{{ error() }}</p>
+      <button class="btn btn-outline-danger" (click)="loadUsers()">
+        Reintentar
+      </button>
+    </div>
+  } @else {
+    <!-- User Grid - Wireframe Style (4x2) -->
+    <div class="row g-4 justify-content-center">
+      @for (user of paginatedUsers(); track user.id) {
+        <div class="col-lg-3 col-md-6">
+          <div class="card user-card border shadow-sm h-100">
+            <div class="card-body text-center p-4">
+              <!-- User Photo (circular) -->
+              <div class="user-photo-container mb-3">
+                <img
+                  [src]="getUserAvatar(user)"
+                  [alt]="getFullName(user)"
+                  class="user-photo rounded-circle"
+                  onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=default'"
+                >
+              </div>
+
+              <!-- User Name -->
+              <h6 class="card-title text-dark mb-3">{{ getFullName(user) }}</h6>
+
+              <!-- Action Buttons (3 buttons like wireframe) -->
+              <div class="action-buttons d-grid gap-2">
+                <!-- Ver detalle -->
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btn-sm"
+                  [routerLink]="['/user', user.id]"
+                  aria-label="Ver detalles del usuario {{ getFullName(user) }}"
+                >
+                  Ver
+                </button>
+                <!-- Actualizar -->
+                <button
+                  type="button"
+                  class="btn btn-outline-warning btn-sm"
+                  [routerLink]="['/updateuser', user.id]"
+                  aria-label="Actualizar usuario {{ getFullName(user) }}"
+                >
+                  Actualizar
+                </button>
+                <!-- Borrar -->
+                <button
+                  type="button"
+                  class="btn btn-outline-danger btn-sm"
+                  (click)="confirmDelete(user)"
+                  aria-label="Eliminar usuario {{ getFullName(user) }}"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="col-12 text-center">
+          <div class="alert alert-info">
+            <h4>No hay usuarios disponibles</h4>
+            <p>No se encontraron usuarios en el sistema.</p>
+            <button class="btn btn-primary" routerLink="/newuser">
+              ➕ Crear primer usuario
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Pagination Controls (like wireframe) -->
+    @if (totalPages() > 1) {
+      <div class="pagination-container text-center mt-4">
+        <nav aria-label="User pagination">
+          <ul class="pagination justify-content-center">
+            @for (page of getPageNumbers(); track page) {
+              <li class="page-item" [class.active]="page === currentPage()">
+                <button
+                  class="page-link"
+                  (click)="goToPage(page)"
+                  [disabled]="page === currentPage()"
+                >
+                  {{ page }}
+                </button>
+              </li>
+            }
+          </ul>
+        </nav>
+      </div>
+    }
+  }
+</div>
+
+<!-- Delete Confirmation Modal (like wireframe) -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <p class="mb-4 fs-5">¿Deseas Borrar al usuario {{ userToDelete()?.first_name }}?</p>
+        <div class="d-flex justify-content-center gap-3">
+          <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary px-4" (click)="executeDelete()">
+            Aceptar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

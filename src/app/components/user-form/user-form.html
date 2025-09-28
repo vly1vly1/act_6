@@ -1,1 +1,148 @@
-<p>user-form works!</p>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card user-form-card shadow-lg">
+        <!-- Header matching wireframes -->
+        <div class="card-header text-center py-4"
+             [ngClass]="isEditMode() ? 'bg-warning text-dark' : 'bg-primary text-white'">
+          <h2 class="display-6 mb-0 form-title">
+            {{ isEditMode() ? 'ACTUALIZAR USUARIO' : 'NUEVO USUARIO' }}
+          </h2>
+        </div>
+
+        <div class="card-body p-5">
+          @if (loading()) {
+            <div class="text-center loading-section">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+              <p class="mt-3 text-muted">Cargando datos del usuario...</p>
+            </div>
+          } @else {
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+              <!-- Avatar Preview (top of form) -->
+              <div class="text-center mb-4">
+                <div class="avatar-preview-container">
+                  <img
+                    [src]="getAvatarPreview()"
+                    alt="Preview"
+                    class="avatar-preview rounded-circle"
+                    onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=preview'"
+                  >
+                </div>
+                <small class="text-muted">Vista previa de la imagen</small>
+              </div>
+
+              <!-- Nombre Usuario -->
+              <div class="mb-4">
+                <label for="first_name" class="form-label">
+                  <strong>Nombre Usuario</strong>
+                </label>
+                <input
+                  type="text"
+                  id="first_name"
+                  class="form-control form-control-lg"
+                  formControlName="first_name"
+                  [class.is-invalid]="isFieldInvalid('first_name')"
+                  placeholder="Introduce nombre de usuario"
+                >
+                @if (isFieldInvalid('first_name')) {
+                  <div class="invalid-feedback">
+                    {{ getFieldError('first_name') }}
+                  </div>
+                }
+              </div>
+
+              <!-- Apellido Usuario -->
+              <div class="mb-4">
+                <label for="last_name" class="form-label">
+                  <strong>Apellido Usuario</strong>
+                </label>
+                <input
+                  type="text"
+                  id="last_name"
+                  class="form-control form-control-lg"
+                  formControlName="last_name"
+                  [class.is-invalid]="isFieldInvalid('last_name')"
+                  placeholder="Introduce apellido de usuario"
+                >
+                @if (isFieldInvalid('last_name')) {
+                  <div class="invalid-feedback">
+                    {{ getFieldError('last_name') }}
+                  </div>
+                }
+              </div>
+
+              <!-- Email Usuario -->
+              <div class="mb-4">
+                <label for="email" class="form-label">
+                  <strong>Email Usuario</strong>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control form-control-lg"
+                  formControlName="email"
+                  [class.is-invalid]="isFieldInvalid('email')"
+                  placeholder="Introduce email de usuario"
+                >
+                @if (isFieldInvalid('email')) {
+                  <div class="invalid-feedback">
+                    {{ getFieldError('email') }}
+                  </div>
+                }
+              </div>
+
+              <!-- Imagen Usuario -->
+              <div class="mb-5">
+                <label for="avatar" class="form-label">
+                  <strong>Imagen Usuario</strong>
+                </label>
+                <input
+                  type="url"
+                  id="avatar"
+                  class="form-control form-control-lg"
+                  formControlName="avatar"
+                  [class.is-invalid]="isFieldInvalid('avatar')"
+                  placeholder="Introduce url de foto usuario"
+                >
+                @if (isFieldInvalid('avatar')) {
+                  <div class="invalid-feedback">
+                    {{ getFieldError('avatar') }}
+                  </div>
+                }
+                <div class="form-text">
+                  Introduce una URL válida de imagen (por ejemplo: https://example.com/imagen.jpg)
+                </div>
+              </div>
+
+              <!-- Action Buttons (Bootstrap Best Practices) -->
+              <div class="d-flex justify-content-center gap-3">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg px-5"
+                  [routerLink]="isEditMode() ? ['/user', userId()] : ['/home']"
+                  aria-label="Cancelar y volver"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-lg px-5"
+                  [ngClass]="isEditMode() ? 'btn-warning' : 'btn-success'"
+                  [disabled]="userForm.invalid || submitting()"
+                  [attr.aria-label]="isEditMode() ? 'Actualizar usuario' : 'Guardar nuevo usuario'"
+                >
+                  @if (submitting()) {
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  }
+                  {{ isEditMode() ? 'Actualizar' : 'Guardar' }}
+                </button>
+              </div>
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

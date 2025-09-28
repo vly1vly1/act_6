@@ -1,1 +1,119 @@
-<p>user-detail works!</p>
+<div class="container py-4">
+  @if (loading()) {
+    <div class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+  } @else if (error()) {
+    <div class="alert alert-danger text-center">
+      <h4>Error al cargar usuario</h4>
+      <p>{{ error() }}</p>
+      <button class="btn btn-outline-danger" (click)="loadUser()">
+        Reintentar
+      </button>
+    </div>
+  } @else if (user()) {
+    <!-- Wireframe Style Layout: Two columns (Large photo left, info right) -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card user-detail-card border shadow-sm">
+          <div class="card-body p-5">
+            <div class="row align-items-start">
+              <!-- Left Column: Large User Photo -->
+              <div class="col-md-4 text-center">
+                <div class="user-photo-large-container">
+                  <img
+                    [src]="getUserAvatar(user()!)"
+                    [alt]="getFullName(user()!)"
+                    class="user-photo-large rounded-circle"
+                    onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=default'"
+                  >
+                </div>
+              </div>
+
+              <!-- Right Column: User Information (matching wireframe) -->
+              <div class="col-md-8">
+                <div class="user-info-section">
+                  <!-- Nombre del usuario -->
+                  <div class="info-row mb-4">
+                    <h5 class="info-label">Nombre del usuario</h5>
+                    <p class="info-value">{{ user()!.first_name }}</p>
+                  </div>
+
+                  <!-- Apellido del usuario -->
+                  <div class="info-row mb-4">
+                    <h5 class="info-label">Apellido del usuario</h5>
+                    <p class="info-value">{{ user()!.last_name }}</p>
+                  </div>
+
+                  <!-- Nombre Usuario: -->
+                  <div class="info-row mb-4">
+                    <h5 class="info-label">Nombre Usuario:</h5>
+                    <p class="info-value">{{ user()!.first_name }} {{ user()!.last_name }}</p>
+                  </div>
+
+                  <!-- Email: -->
+                  <div class="info-row mb-5">
+                    <h5 class="info-label">Email:</h5>
+                    <p class="info-value">{{ user()!.email }}</p>
+                  </div>
+
+                  <!-- Action Buttons - Bootstrap Best Practices -->
+                  <div class="action-buttons-detail d-flex gap-3 flex-wrap">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="confirmDelete()"
+                      aria-label="Eliminar usuario {{ getFullName(user()!) }}"
+                    >
+                      Eliminar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-warning"
+                      [routerLink]="['/updateuser', user()!.id]"
+                      aria-label="Actualizar usuario {{ getFullName(user()!) }}"
+                    >
+                      Actualizar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      [routerLink]="['/home']"
+                      aria-label="Volver al listado de usuarios"
+                    >
+                      Volver a listado
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Delete Confirmation Modal (matching wireframe) -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <p class="mb-4 fs-5">¿Deseas Borrar al usuario {{ user()?.first_name }}?</p>
+        <div class="d-flex justify-content-center gap-3">
+          <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary px-4" (click)="executeDelete()">
+            Aceptar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

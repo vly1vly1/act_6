@@ -5,6 +5,7 @@ export interface User {
   email: string;
   username?: string;
   avatar?: string;
+  image?: string; // For API compatibility
 }
 
 export interface PaginatedResponse<T> {
@@ -12,7 +13,7 @@ export interface PaginatedResponse<T> {
   per_page: number;
   total: number;
   total_pages: number;
-  data: T[];
+  results: T[]; // API uses 'results' not 'data'
 }
 
 export interface CreateUserRequest {
