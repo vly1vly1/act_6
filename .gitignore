@@ -96,3 +96,4 @@ Icon?
 # Temporary files
 .tmp/
 .temp/
+.vscode/
