@@ -14,13 +14,13 @@
       </button>
     </div>
   } @else if (user()) {
-    <!-- Wireframe Style Layout: Two columns (Large photo left, info right) -->
+    
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="card user-detail-card border shadow-sm">
           <div class="card-body p-5">
             <div class="row align-items-start">
-              <!-- Left Column: Large User Photo -->
+              
               <div class="col-md-4 text-center">
                 <div class="user-photo-large-container">
                   <img
@@ -32,34 +32,34 @@
                 </div>
               </div>
 
-              <!-- Right Column: User Information (matching wireframe) -->
+              
               <div class="col-md-8">
                 <div class="user-info-section">
-                  <!-- Nombre del usuario -->
+                  
                   <div class="info-row mb-4">
                     <h5 class="info-label">Nombre del usuario</h5>
                     <p class="info-value">{{ user()!.first_name }}</p>
                   </div>
 
-                  <!-- Apellido del usuario -->
+                  
                   <div class="info-row mb-4">
                     <h5 class="info-label">Apellido del usuario</h5>
                     <p class="info-value">{{ user()!.last_name }}</p>
                   </div>
 
-                  <!-- Nombre Usuario: -->
+                  
                   <div class="info-row mb-4">
                     <h5 class="info-label">Nombre Usuario:</h5>
                     <p class="info-value">{{ user()!.first_name }} {{ user()!.last_name }}</p>
                   </div>
 
-                  <!-- Email: -->
+                  
                   <div class="info-row mb-5">
                     <h5 class="info-label">Email:</h5>
                     <p class="info-value">{{ user()!.email }}</p>
                   </div>
 
-                  <!-- Action Buttons - Bootstrap Best Practices -->
+                  
                   <div class="action-buttons-detail d-flex gap-3 flex-wrap">
                     <button
                       type="button"
@@ -96,7 +96,7 @@
   }
 </div>
 
-<!-- Delete Confirmation Modal (matching wireframe) -->
+
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

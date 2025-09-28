@@ -14,13 +14,11 @@
       </button>
     </div>
   } @else {
-    <!-- User Grid - Wireframe Style (4x2) -->
     <div class="row g-4 justify-content-center">
       @for (user of paginatedUsers(); track user.id) {
         <div class="col-lg-3 col-md-6">
           <div class="card user-card border shadow-sm h-100">
             <div class="card-body text-center p-4">
-              <!-- User Photo (circular) -->
               <div class="user-photo-container mb-3">
                 <img
                   [src]="getUserAvatar(user)"
@@ -30,12 +28,8 @@
                 >
               </div>
 
-              <!-- User Name -->
               <h6 class="card-title text-dark mb-3">{{ getFullName(user) }}</h6>
-
-              <!-- Action Buttons (3 buttons like wireframe) -->
               <div class="action-buttons d-grid gap-2">
-                <!-- Ver detalle -->
                 <button
                   type="button"
                   class="btn btn-outline-primary btn-sm"
@@ -44,7 +38,6 @@
                 >
                   Ver
                 </button>
-                <!-- Actualizar -->
                 <button
                   type="button"
                   class="btn btn-outline-warning btn-sm"
@@ -53,7 +46,6 @@
                 >
                   Actualizar
                 </button>
-                <!-- Borrar -->
                 <button
                   type="button"
                   class="btn btn-outline-danger btn-sm"
@@ -79,7 +71,7 @@
       }
     </div>
 
-    <!-- Pagination Controls (like wireframe) -->
+    
     @if (totalPages() > 1) {
       <div class="pagination-container text-center mt-4">
         <nav aria-label="User pagination">
@@ -102,7 +94,7 @@
   }
 </div>
 
-<!-- Delete Confirmation Modal (like wireframe) -->
+
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

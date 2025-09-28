@@ -2,7 +2,6 @@
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div class="card user-form-card shadow-lg">
-        <!-- Header matching wireframes -->
         <div class="card-header text-center py-4"
              [ngClass]="isEditMode() ? 'bg-warning text-dark' : 'bg-primary text-white'">
           <h2 class="display-6 mb-0 form-title">
@@ -20,7 +19,6 @@
             </div>
           } @else {
             <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
-              <!-- Avatar Preview (top of form) -->
               <div class="text-center mb-4">
                 <div class="avatar-preview-container">
                   <img
@@ -33,7 +31,7 @@
                 <small class="text-muted">Vista previa de la imagen</small>
               </div>
 
-              <!-- Nombre Usuario -->
+              
               <div class="mb-4">
                 <label for="first_name" class="form-label">
                   <strong>Nombre Usuario</strong>
@@ -53,7 +51,7 @@
                 }
               </div>
 
-              <!-- Apellido Usuario -->
+              
               <div class="mb-4">
                 <label for="last_name" class="form-label">
                   <strong>Apellido Usuario</strong>
@@ -73,7 +71,7 @@
                 }
               </div>
 
-              <!-- Email Usuario -->
+              
               <div class="mb-4">
                 <label for="email" class="form-label">
                   <strong>Email Usuario</strong>
@@ -93,7 +91,7 @@
                 }
               </div>
 
-              <!-- Imagen Usuario -->
+              
               <div class="mb-5">
                 <label for="avatar" class="form-label">
                   <strong>Imagen Usuario</strong>
@@ -116,7 +114,7 @@
                 </div>
               </div>
 
-              <!-- Action Buttons (Bootstrap Best Practices) -->
+              
               <div class="d-flex justify-content-center gap-3">
                 <button
                   type="button"
